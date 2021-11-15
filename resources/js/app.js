@@ -21,10 +21,10 @@ import 'material-icons/iconfont/material-icons.css';
 //defined as global component
 Vue.component('V-MaterialIcon', require('vue-materials-icon/MaterialIcon').default);
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('navbar', require('./components/Navbar.vue').default);
+Vue.component('main-page', require('./components/Main.vue').default);
+
 
 Vue.component('sign-up', require('./components/SignUp.vue').default);
 Vue.component('sign-in', require('./components/SignIn.vue').default);

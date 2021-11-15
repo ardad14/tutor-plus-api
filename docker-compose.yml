@@ -47,7 +47,7 @@ services:
     ports:
       - "3310:3310"
     environment:
-      MYSQL_DATABASE: ScrumDashboard
+      MYSQL_DATABASE: Observested
       MYSQL_ROOT_PASSWORD: root
       SERVICE_TAGS: dev
       SERVICE_NAME: localhost

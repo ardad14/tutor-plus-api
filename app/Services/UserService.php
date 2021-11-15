@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Http\Requests\SignUpRequest;
 use App\Models\User;
 use App\Http\Requests\SignInRequest;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Laravel\Socialite\Facades\Socialite;
@@ -16,7 +17,7 @@ class UserService
      *
      * @param SignInRequest $request
      */
-    public static function signIn(SignInRequest $request): bool
+    public static function signIn(Request $request): bool
     {
         DB::table('users')->insert([
             'name' => $request['name'],

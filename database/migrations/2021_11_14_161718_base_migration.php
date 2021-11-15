@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ScrumDashboard extends Migration
+class BaseMigration extends Migration
 {
     /**
      * Run the migrations.
@@ -65,7 +65,7 @@ class ScrumDashboard extends Migration
          */
         Schema::table('users', function (Blueprint $table) {
             $table->after('password', function ($table) {
-              $table->foreignId('place_id')->constrained('places')->onDelete('cascade');
+                $table->foreignId('place_id')->constrained('places')->onDelete('cascade');
             });
         });
 
