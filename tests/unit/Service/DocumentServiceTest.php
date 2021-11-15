@@ -35,7 +35,7 @@ class DocumentServiceTest extends \Codeception\Test\Unit
             [
                 'name' => 'First document',
                 'description' => 'It`t our first document',
-                'url' => 'https://github.com/ardad14/scrum-dashboard'
+                'url' => 'https://github.com/ardad14/observested'
             ]
         );
 
