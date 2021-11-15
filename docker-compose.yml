@@ -2,18 +2,18 @@ version: '3'
 services:
 
   #PHP Service
-  scrum-dashboard-app:
+  observested-app:
     build:
       context: .
       dockerfile: Dockerfile
     image: php:8.0.10-fpm
-    container_name: scrum-dashboard-app
+    container_name: observested-app
     restart: unless-stopped
     tty: true
     environment:
-      PHP_IDE_CONFIG: "serverName=docker.scrum-dashboard"
+      PHP_IDE_CONFIG: "serverName=observested"
       XDEBUG_SESSION: docker-server
-      SERVICE_NAME: scrum-dashboard-app
+      SERVICE_NAME: observested-app
       SERVICE_TAGS: dev
     working_dir: /var/www
     volumes:
@@ -23,9 +23,9 @@ services:
       - app-network
 
   #Nginx Service
-  scrum-dashboard-webserver:
+  observested-webserver:
     image: nginx:alpine
-    container_name: scrum-dashboard-webserver
+    container_name: observested-webserver
     restart: unless-stopped
     tty: true
     ports:
@@ -39,9 +39,9 @@ services:
       - app-network
 
   #MySQL Service
-  scrum-dashboard-db:
+  observested-db:
     image: mysql:5.7.22
-    container_name: scrum-dashboard-db
+    container_name: observested-db
     restart: unless-stopped
     tty: true
     ports:
