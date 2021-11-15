@@ -2,8 +2,6 @@
 
 @section('content')
     <div id="app">
-        <edit-card
-            :card="{{ $card }}"
-        />
+        <edit-card />
     </div>
 @endsection

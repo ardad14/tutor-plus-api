@@ -38,45 +38,15 @@ use App\Models\Card;
 */
 
 Route::get('/', function () {
-    if(!UserService::isAuth()) {
-        return view('notAuth');
-    }
-    return view('documents', [
-        'userId' => session()->get('userId'),
-        'name' => session()->get('name'),
-        'surname' => session()->get('surname'),
-        'documents' => DocumentService::getDocumentsByProject(),
-        'activeProject' => ProjectService::getProjectBySession(),
-        'create_document_notifications' =>
-            NotificationService::getUnreadNotifications("CreateDocumentNotification"),
-        'delete_document_notifications' =>
-            NotificationService::getUnreadNotifications("DeleteDocumentNotification")
-    ]);
+    return view('documents');
 });
 
 Route::get('/documents', function () {
-    if(!UserService::isAuth()) {
-        return view('notAuth');
-    }
-    return view('documents', [
-        'userId' => session()->get('userId'),
-        'name' => session()->get('name'),
-        'surname' => session()->get('surname'),
-        'documents' => DocumentService::getDocumentsByProject(),
-        'activeProject' => ProjectService::getProjectBySession(),
-        'create_document_notifications' =>
-            NotificationService::getUnreadNotifications("CreateDocumentNotification"),
-        'delete_document_notifications' =>
-            NotificationService::getUnreadNotifications("DeleteDocumentNotification")
-    ]);
+    return view('documents');
 });
 
 Route::get('/createDocument', function () {
-    return view('createDocument', [
-        'name' => session()->get('name'),
-        'surname' => session()->get('surname'),
-        'activeProject' => ProjectService::getProjectBySession()
-    ]);
+    return view('createDocument');
 });
 
 Route::post(
@@ -96,12 +66,7 @@ Route::match(
 )->name('openDocument');
 
 Route::get('/editDocument/{id}', function ($id) {
-    return view('editDocument', [
-        'name' => session()->get('name'),
-        'surname' => session()->get('surname'),
-        'activeProject' => ProjectService::getProjectBySession(),
-        'document' => Document::find($id)
-    ]);
+    return view('editDocument');
 });
 
 Route::put('/editDocumentService',
@@ -115,27 +80,11 @@ Route::put('/editDocumentService',
 */
 
 Route::get('/projects', function () {
-    if(!UserService::isAuth()) {
-        return view('notAuth');
-    }
-    return view('projects', [
-        'userId' => session()->get('userId'),
-        'name' => session()->get('name'),
-        'surname' => session()->get('surname'),
-        'projects' => ProjectService::getAllProjectsForUser(),
-        'select' => session()->get('activeProject'),
-        'activeProject' => ProjectService::getProjectBySession(),
-        'create_project_notifications' => NotificationService::getUnreadNotifications("CreateProjectNotification"),
-        'delete_project_notifications' => NotificationService::getUnreadNotifications("DeleteProjectNotification")
-    ]);
+    return view('projects');
 });
 
 Route::get('/createProject', function () {
-    return view('createProject', [
-        'name' => session()->get('name'),
-        'surname' => session()->get('surname'),
-        'activeProject' => ProjectService::getProjectBySession()
-    ]);
+    return view('createProject');
 });
 
 Route::post(
@@ -159,14 +108,7 @@ Route::put(
 )->name('unselectProject');
 
 Route::get('/projectPage/{id}', function () {
-    return view('projectPage', [
-        'userId' => session()->get('userId'),
-        'name' => session()->get('name'),
-        'surname' => session()->get('surname'),
-        'activeProject' => ProjectService::getProjectBySession(),
-        'projectUsers' => ProjectService::getAllUsersForProject(),
-        'user' => json_encode(UserService::getUserBySession()),
-    ]);
+    return view('projectPage');
 })->name('projectPage');
 
 Route::get(
@@ -175,11 +117,7 @@ Route::get(
 )->name('selectAndOpenProjectPage');
 
 Route::get('/addUserToProject', function () {
-    return view('addUserToProject', [
-        'name' => session()->get('name'),
-        'surname' => session()->get('surname'),
-        'activeProject' => ProjectService::getProjectBySession()
-    ]);
+    return view('addUserToProject');
 });
 
 Route::post(
@@ -188,14 +126,8 @@ Route::post(
 )->name('addUserToProjectService');
 
 Route::get(
-    '/editProject/{id}',
-    function () {
-        return view('editProject', [
-            'name' => session()->get('name'),
-            'surname' => session()->get('surname'),
-            'activeProject' => ProjectService::getProjectBySession(),
-            'project' => ProjectService::getProjectBySession()
-            ]);
+    '/editProject/{id}', function () {
+        return view('editProject');
     }
 )->name('editProject');
 
@@ -209,11 +141,7 @@ Route::put('/editProjectService',
 */
 
 Route::get('/signUp', function () {
-    return view('signUp', [
-        'name' => session()->get('name'),
-        'surname' => session()->get('surname'),
-        'activeProject' => ProjectService::getProjectBySession()
-    ]);
+    return view('signUp');
 });
 
 Route::match(
@@ -223,11 +151,7 @@ Route::match(
 )->name('signUp');
 
 Route::get('/signIn', function () {
-    return view('signIn', [
-        'name' => session()->get('name'),
-        'surname' => session()->get('surname'),
-        'activeProject' => ProjectService::getProjectBySession()
-    ]);
+    return view('signIn');
 });
 
 Route::match(
@@ -249,25 +173,11 @@ Route::match(
 */
 
 Route::get('/board', function () {
-    if(!UserService::isAuth()) {
-        return view('notAuth');
-    }
-    return view('board', [
-        'name' => session()->get('name'),
-        'surname' => session()->get('surname'),
-        'activeProject' => ProjectService::getProjectBySession(),
-        'assignUsers' => BoardService::getAssignUsers(),
-        'cards' => BoardService::getCardsAtBoard()
-    ]);
+    return view('board');
 });
 
 Route::get('/createCard/{category}', function ($category) {
-    return view('createCard', [
-        'name' => session()->get('name'),
-        'surname' => session()->get('surname'),
-        'activeProject' => ProjectService::getProjectBySession(),
-        'category' => $category
-    ]);
+    return view('createCard');
 });
 
 Route::post(
@@ -293,12 +203,7 @@ Route::delete(
 
 Route::get(
     '/editCard/{id}', function ($id) {
-    return view('editCard', [
-        'name' => session()->get('name'),
-        'surname' => session()->get('surname'),
-        'activeProject' => ProjectService::getProjectBySession(),
-        'card' => Card::find($id)
-    ]);
+    return view('editCard');
     }
 )->name('editCard');
 
@@ -319,22 +224,11 @@ Route::delete(
 */
 
 Route::get('/reports', function () {
-    if(!UserService::isAuth()) {
-        return view('notAuth');
-    }
-    return view('reports', [
-        'name' => session()->get('name'),
-        'surname' => session()->get('surname'),
-        'activeProject' => ProjectService::getProjectBySession()
-    ]);
+    return view('reports');
 });
 
 Route::get('/createReport', function () {
-    return view('createReport', [
-        'name' => session()->get('name'),
-        'surname' => session()->get('surname'),
-        'activeProject' => ProjectService::getProjectBySession()
-    ]);
+    return view('createReport');
 });
 
 /*
