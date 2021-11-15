@@ -16,17 +16,8 @@
                             </div>
                         </div>
                     </li>-->
-                    <li><a type="button" href="/signIn" v-if="name.length === 0" class="nav-link active">Sign in</a></li>
-                    <li><a type="button" href="/signUp" v-if="name.length === 0" class="btn btn-primary me-2">Sign up</a></li>
-                    <li class="nav-item">
-                        <div>
-                            <a href="#" class="nav-link link-dark px-2">{{name}} {{surname}}</a>
-                        </div>
-                    </li>
-                    <li><a type="button" href="/logOut" v-if="name.length !== 0" class="btn btn-primary me-2">Log Out</a></li>
-                    <li v-if="this.projectData !== `null` && this.projectData.length !== 0" class="nav-item">
-                        <a :href=infoUrlId class="nav-link link-dark px-2">Project: {{computedProject.name}}</a>
-                    </li>
+                    <li><a type="button" href="/signIn" class="nav-link active">Регистрация</a></li>
+                    <li><a type="button" href="/signUp" class="btn btn-primary me-2">Увийты</a></li>
                 </ul>
             </div>
         </nav>
@@ -35,29 +26,7 @@
 
 <script>
 export default {
-    name: "Navbar",
-    props: {
-        name: "",
-        surname: "",
-        project: []
-    },
-    data() {
-        return {
-            infoUrl: "/projectPage/",
-            projectData: this.project,
-        }
-    },
-    computed: {
-        infoUrlId: function () {
-            return this.infoUrl + this.computedProject.id;
-        },
-        computedProject: function () {
-            if(this.projectData !== "null" && this.projectData.length !== 0)
-                return JSON.parse(this.projectData);
-            else
-                return "";
-        }
-    }
+    name: "Navbar"
 }
 </script>
 

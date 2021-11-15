@@ -2,8 +2,6 @@
 
 @section('content')
     <div id="app">
-        <edit-document
-            :document="{{ $document }}"
-        />
+        <edit-document />
     </div>
 @endsection
