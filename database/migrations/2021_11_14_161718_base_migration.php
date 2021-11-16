@@ -43,6 +43,7 @@ class BaseMigration extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name');
+            $table->string('surname');
             $table->string('age')->nullable();
             $table->dateTime('created_at')->useCurrent();
             $table->dateTime('updated_at')->nullable()->useCurrentOnUpdate();

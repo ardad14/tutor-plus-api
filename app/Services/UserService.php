@@ -19,11 +19,17 @@ class UserService
      */
     public static function signIn(Request $request): bool
     {
+        $place = DB::table('places')
+                    ->where('name', $request['place'])
+                    ->first();
+
         DB::table('users')->insert([
             'name' => $request['name'],
             'surname' => $request['surname'],
             'email' => $request['email'],
-            'password' => $request['password']
+            'password' => $request['password'],
+            'place_id' =>$place->id,
+            'role' => $request['role'],
         ]);
         header("Location: /signUp");
 
