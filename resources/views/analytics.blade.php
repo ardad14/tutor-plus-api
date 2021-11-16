@@ -2,8 +2,6 @@
 
 @section('content')
     <div id="app">
-        <sign-in
-            :all_places="{{ $allPlaces }}"
-        />
+        <analytics></analytics>
     </div>
 @endsection

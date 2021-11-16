@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\PlaceController;
+
+use App\Services\PlaceService;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +18,20 @@ use App\Http\Controllers\UserController;
 |
 */
 
-/*
-|--------------------------------------------------------------------------
-| Documents Routes
-|--------------------------------------------------------------------------
-*/
+Route::get('/', fn() => view('main'));
 
-Route::get('/', function () {
-    return view('main');
-});
+Route::get('/analytics', fn() => view('analytics'));
+
+Route::get('/clients', fn() => view('clients'));
+
+Route::get('/createPlace', fn() => view('createPlace'));
+
+Route::post(
+    '/createPlaceService',
+    [PlaceController::class, 'createPlace']
+);
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,28 +39,23 @@ Route::get('/', function () {
 |--------------------------------------------------------------------------
 */
 
-Route::get('/signUp', function () {
-    return view('signUp');
-});
+Route::get('/signUp', fn() => view('signUp'));
 
-Route::match(
-    ['get', 'post'],
+Route::post(
     '/signUpService',
     [UserController::class, 'signUp']
 )->name('signUp');
 
-Route::get('/signIn', function () {
-    return view('signIn');
-});
+Route::get('/signIn', fn() => view('signIn', [
+    'allPlaces' => PlaceService::getAllPlaces()
+]));
 
 Route::post(
     '/signInService',
     [UserController::class, 'signIn']
 )->name('signIn');
 
-Route::match(
-    ['get', 'post'],
+Route::get(
     '/logOut',
     [UserController::class, 'logOut']
 )->name('logOut');
-
