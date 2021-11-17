@@ -4,10 +4,8 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class DocumentFactory extends Factory
+class ClientFactory extends Factory
 {
-
-
     /**
      * Define the model's default state.
      *
@@ -16,10 +14,9 @@ class DocumentFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name(),
-            'description' => $this->faker->text(),
-            'url' => $this->faker->url(),
-            'author_id' => $this->faker->randomDigit(),
+            'name' => $this->faker->firstName(),
+            'surname' => $this->faker->lastName(),
+            'age' => $this->faker->numberBetween(10, 90),
         ];
     }
 }

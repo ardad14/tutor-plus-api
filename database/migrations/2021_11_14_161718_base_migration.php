@@ -52,6 +52,8 @@ class BaseMigration extends Migration
         Schema::create('clients_places', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->float('spend_money');
+            $table->dateTime('created_at')->useCurrent();
+            $table->dateTime('updated_at')->nullable()->useCurrentOnUpdate();
         });
 
 

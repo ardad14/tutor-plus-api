@@ -1,4 +1,4 @@
-@extends('layouts.mainLayout')
+@extends('layouts.withoutNavbar')
 
 @section('content')
     <div id="app">

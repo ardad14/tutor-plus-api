@@ -33,6 +33,8 @@ Vue.component('clients', require('./components/Clients.vue').default);
 Vue.component('sign-up', require('./components/SignUp.vue').default);
 Vue.component('sign-in', require('./components/SignIn.vue').default);
 
+Vue.component('chart', require('./components/Chart.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

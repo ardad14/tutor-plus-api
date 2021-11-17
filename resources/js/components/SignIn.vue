@@ -38,6 +38,10 @@
                 <h5>Ще не створили свій заклад?</h5>
                 <h6><a href="/createPlace" class="text-decoration-none">Створіть заклад</a></h6>
             </div>
+            <div class="form-group text-center mt-4">
+                <h5>Вже є акаунт?</h5>
+                <h6><a href="/signUp" class="text-decoration-none">Увійти</a></h6>
+            </div>
         </form>
     </div>
 </template>
