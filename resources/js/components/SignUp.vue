@@ -14,6 +14,14 @@
             <div class="form-group text-center mt-4">
                 <button class="btn btn-primary" type="submit" :disabled="active">Увійти</button>
             </div>
+            <div class="form-group text-center mt-4">
+                <h5>Ще не створили свій заклад?</h5>
+                <h6><a href="/createPlace" class="text-decoration-none">Створіть заклад</a></h6>
+            </div>
+            <div class="form-group text-center mt-4">
+                <h5>Ще не маєте акаунт?</h5>
+                <h6><a href="/signIn" class="text-decoration-none">Сторвити акаунт</a></h6>
+            </div>
         </form>
     </div>
 </template>

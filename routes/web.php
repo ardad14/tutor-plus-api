@@ -5,7 +5,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PlaceController;
 
+use App\Services\UserService;
 use App\Services\PlaceService;
+use App\Services\AnalyticsService;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +20,11 @@ use App\Services\PlaceService;
 |
 */
 
-Route::get('/', fn() => view('main'));
+Route::get('/', fn() => UserService::isAuth() ? view('analytics') : view('main'));
 
-Route::get('/analytics', fn() => view('analytics'));
+Route::get('/analytics', fn() => view('analytics', [
+    'actions' => AnalyticsService::getAllActionsForPlace(),
+]));
 
 Route::get('/clients', fn() => view('clients'));
 
