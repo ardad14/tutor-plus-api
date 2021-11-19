@@ -20,11 +20,30 @@ use App\Services\AnalyticsService;
 |
 */
 
-Route::get('/', fn() => UserService::isAuth() ? view('analytics') : view('main'));
+/*
+|--------------------------------------------------------------------------
+| Analytics Routes
+|--------------------------------------------------------------------------
+*/
 
-Route::get('/analytics', fn() => view('analytics', [
+Route::get('/', fn() => view('main'));
+
+Route::get('/analytics/general', fn() => view('analyticsGeneral', [
     'actions' => AnalyticsService::getAllActionsForPlace(),
 ]));
+
+Route::get('/analytics/month', fn() => view('analyticsMonth', [
+    'actions' => AnalyticsService::getAllActionsForPlace(),
+]));
+
+Route::get('/analytics/clients', fn() => view('analyticsClients', [
+    'actions' => AnalyticsService::getAllActionsForPlace(),
+]));
+
+Route::get('/analytics/goods', fn() => view('analyticsGoods', [
+    'actions' => AnalyticsService::getAllProductsForPlace(),
+]));
+
 
 Route::get('/clients', fn() => view('clients'));
 

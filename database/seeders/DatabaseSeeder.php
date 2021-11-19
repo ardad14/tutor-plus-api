@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Client;
 use App\Models\ClientPlaces;
 use App\Models\Place;
+use App\Models\Product;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -21,17 +22,21 @@ class DatabaseSeeder extends Seeder
             ->count(10)
             ->create();
 
+
         User::factory()
             ->count(10)
-            ->create();*/
-
-        /*Client::factory()
-            ->count(150)
-            ->create();*/
-
-        ClientPlaces::factory()
-            ->count(1000)
             ->create();
 
+        Client::factory()
+            ->count(150)
+            ->create();
+
+        ClientPlaces::factory()
+            ->count(500)
+            ->create();*/
+
+        Product::factory()
+            ->count(40)
+            ->create();
     }
 }

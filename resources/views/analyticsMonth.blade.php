@@ -2,6 +2,8 @@
 
 @section('content')
     <div id="app">
-        <clients></clients>
+        <analytics-month
+            actions="{{ $actions }}"
+        />
     </div>
 @endsection
