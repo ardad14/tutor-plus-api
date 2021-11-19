@@ -2,7 +2,7 @@
 
 @section('content')
     <div id="app">
-        <analytics
+        <analytics-clients
             actions="{{ $actions }}"
         />
     </div>

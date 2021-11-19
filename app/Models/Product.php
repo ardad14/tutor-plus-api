@@ -5,10 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class Product extends Model
 {
     use HasFactory;
 
     private $name;
-    private $age;
+    private $purchase;
+    private $price;
+    private $available_amount;
+    private $sold;
+    private $place_id;
 }

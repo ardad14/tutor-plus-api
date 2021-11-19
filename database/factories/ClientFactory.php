@@ -16,7 +16,7 @@ class ClientFactory extends Factory
         return [
             'name' => $this->faker->firstName(),
             'surname' => $this->faker->lastName(),
-            'age' => $this->faker->numberBetween(10, 90),
+            'age' => $this->faker->numberBetween(4, 90),
         ];
     }
 }

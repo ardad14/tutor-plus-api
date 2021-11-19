@@ -27,13 +27,17 @@ Vue.component('navbar', require('./components/Navbar.vue').default);
 Vue.component('main-page', require('./components/Main.vue').default);
 
 Vue.component('create-place', require('./components/CreatePlace.vue').default);
-Vue.component('analytics', require('./components/Analytics.vue').default);
+
 Vue.component('clients', require('./components/Clients.vue').default);
 
 Vue.component('sign-up', require('./components/SignUp.vue').default);
 Vue.component('sign-in', require('./components/SignIn.vue').default);
 
-Vue.component('chart', require('./components/Chart.vue').default);
+Vue.component('analytics-sidebar', require('./components/analytics/AnalyticsSidebar.vue').default);
+Vue.component('analytics-general', require('./components/analytics/AnalyticsGeneral.vue').default);
+Vue.component('analytics-month', require('./components/analytics/AnalyticsMonth.vue').default);
+Vue.component('analytics-clients', require('./components/analytics/AnalyticsClients.vue').default);
+Vue.component('analytics-goods', require('./components/analytics/AnalyticsGoods.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

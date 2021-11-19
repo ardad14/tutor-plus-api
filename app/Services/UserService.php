@@ -49,7 +49,7 @@ class UserService
             ->first();
         if (is_object($userData)) {
             session()->put('userId', $userData->id);
-            header("Location: /analytics");
+            header("Location: /analytics/general");
             return true;
         }
         header("Location: /signUp");

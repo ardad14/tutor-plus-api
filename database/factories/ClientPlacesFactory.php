@@ -15,9 +15,9 @@ class ClientPlacesFactory extends Factory
     {
         return [
             'client_id' => $this->faker->numberBetween(1, 150),
-            'place_id' => $this->faker->numberBetween(33, 42),
+            'place_id' => $this->faker->numberBetween(1, 10),
             'spend_money' => $this->faker->numberBetween(80, 10000),
-            'created_at' => $this->faker->dateTime()
+            'created_at' => $this->faker->dateTimeThisYear(),
         ];
     }
 }
