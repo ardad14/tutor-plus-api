@@ -14,7 +14,6 @@ class User extends Model
     private $surname;
     private $email;
     private $password;
-    private $place_id;
     private $role;
 
     protected $table = 'users';

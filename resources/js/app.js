@@ -23,12 +23,14 @@ Vue.component('V-MaterialIcon', require('vue-materials-icon/MaterialIcon').defau
 
 
 Vue.component('navbar', require('./components/Navbar.vue').default);
-
 Vue.component('main-page', require('./components/Main.vue').default);
-
 Vue.component('create-place', require('./components/CreatePlace.vue').default);
 
 Vue.component('clients', require('./components/Clients.vue').default);
+Vue.component('edit-client', require('./components/EditClient.vue').default);
+
+Vue.component('workers', require('./components/Wokers.vue').default);
+Vue.component('add-worker', require('./components/AddWorker.vue').default);
 
 Vue.component('sign-up', require('./components/SignUp.vue').default);
 Vue.component('sign-in', require('./components/SignIn.vue').default);

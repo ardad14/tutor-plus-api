@@ -2,8 +2,8 @@
 
 @section('content')
     <div id="app">
-        <clients
-            clients="{{ $clients }}"
+        <add-worker
+
         />
     </div>
 @endsection

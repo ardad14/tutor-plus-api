@@ -19,11 +19,16 @@ export default {
         padding: 40px 0 40px 0;
         border-radius: 7px;
         border: 2px solid #ca84dc;
-        box-shadow: 5px 5px 0 0 #ca84dc;
+        box-shadow: 15px 15px 0 0 #ca84dc;
+        max-width: 690px;
+        font-family: 'Montserrat', sans-serif;
     }
 
     a {
         text-decoration: none;
         font-style: italic;
+    }
+    a:hover{
+        text-decoration: underline;
     }
 </style>
