@@ -3,25 +3,28 @@
 namespace App\Services;
 
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class AnalyticsService
+class ClientService
 {
-    public static function getAllActionsForPlace(): string
+    public static function getClientsForPlace()
     {
         $admin = User::find(session()->get('userId'));
         $place = DB::table('users_places')
             ->where('user_id', $admin->id)
             ->first();
 
-        $actions =  DB::select('select
+        $actions = DB::select('select
                                     clients_places.id,
                                     clients_places.client_id,
                                     clients_places.place_id,
                                     clients_places.spend_money,
                                     clients_places.created_at,
                                     clients.id,
-                                    clients.age
+                                    clients.age,
+                                    clients.name,
+                                    clients.surname
                                 from clients_places, clients
                                 where clients_places.place_id = ? and clients.id = clients_places.client_id',
             [$place->place_id]
@@ -30,15 +33,15 @@ class AnalyticsService
         return json_encode($actions);
     }
 
-    public static function getAllProductsForPlace(): bool|string
+    public static function editClient(Request $request, $id)
     {
-        $admin = User::find(session()->get('userId'));
-        $place = DB::table('users_places')
-            ->where('user_id', $admin->id)
-            ->first();
-        $products =  json_encode(DB::table('products')
-            ->where('place_id', $place->place_id)
-            ->get());
-        return $products;
+        DB::table('clients')
+            ->where('id', $id)
+            ->update([
+                'name' => $request['name'],
+                'surname' => $request['surname'],
+                'age' => $request['age']
+            ]);
+        header('location: /clients');
     }
 }

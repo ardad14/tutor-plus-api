@@ -26,7 +26,7 @@
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Клієнт</th>
-                            <th scope="col">Грощі</th>
+                            <th scope="col">Гроші</th>
                             <th scope="col">Дата</th>
                         </tr>
                         </thead>
@@ -121,5 +121,41 @@ export default {
 </script>
 
 <style scoped>
+    h1{
+        font-family: 'Montserrat', sans-serif;
+        font-size: 30px;
+        font-weight: 500;
+    }
+    h2{
+        font-family: 'Montserrat', sans-serif;
+        font-size: 30px;
+        font-weight: 500;
+        margin: 30px 0;
+    }
 
+    table th{
+        font-family: 'Montserrat', sans-serif;
+        background: #A0A0A0;
+        margin-right: 5px;
+        color: white;
+        padding: 10px 5px;
+    }
+    td:first-child {
+        background:#A0A0A0;
+        font-family: 'Montserrat', sans-serif;
+        color: white;
+        padding: 10px 5px;
+    }
+    th, td {
+        border-style: solid;
+        font-size: 18px;
+        border-width: 0 1px 1px 0;
+        border-color: white;
+    }
+    td {
+        background: #E8E8E8;
+    }
+    th:first-child, td:first-child {
+        text-align: center;
+    }
 </style>

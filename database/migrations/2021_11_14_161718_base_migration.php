@@ -64,16 +64,6 @@ class BaseMigration extends Migration
         */
 
         /**
-         * Foreign keys users
-         */
-        Schema::table('users', function (Blueprint $table) {
-            $table->after('password', function ($table) {
-                $table->foreignId('place_id')->constrained('places')->onDelete('cascade');
-            });
-        });
-
-
-        /**
          * Foreign keys clients_places
          */
         Schema::table('clients_places', function (Blueprint $table) {

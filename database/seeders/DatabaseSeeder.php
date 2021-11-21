@@ -7,6 +7,7 @@ use App\Models\ClientPlaces;
 use App\Models\Place;
 use App\Models\Product;
 use App\Models\User;
+use App\Models\UserPlaces;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -35,8 +36,12 @@ class DatabaseSeeder extends Seeder
             ->count(500)
             ->create();*/
 
-        Product::factory()
-            ->count(40)
+        UserPlaces::factory()
+            ->count(12)
             ->create();
+
+        /*Product::factory()
+            ->count(80)
+            ->create();*/
     }
 }

@@ -20,7 +20,7 @@
                 <input v-model="working_end" type="time" :class="'form-control ' + this.formErrors.working_end" id="working_end" name="working_end">
             </div>
             <div class="form-group text-center mt-3">
-                <a class="btn btn-danger" href="/">Повернутись</a>
+                <a class="btn " href="/">Повернутись</a>
                 <button class="btn btn-primary" type="submit" :disabled="active">Створити</button>
             </div>
         </form>
@@ -84,7 +84,53 @@ export default {
 </script>
 
 <style scoped>
-form {
-    margin-top: 4em;
-}
+    form {
+        margin-top: 3em;
+    }
+    .container{
+        padding: 0 0 10px 0;
+        border-radius: 7px;
+        border: 2px solid #ca84dc;
+        box-shadow: 15px 15px 0 0 #ca84dc;
+        max-width: 650px;
+    }
+    .form-group{
+        margin-bottom: 40px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .form-group input{
+        width:300px;
+        position: relative;
+        left: 20px;
+        border-radius: 10px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 20px;
+    }
+    .form-group label{
+        margin-top: 9px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+    }
+    h1{
+        font-family: 'Montserrat', sans-serif;
+        font-size: 38px;
+        font-weight: 700;
+        position: relative;
+        bottom: 10px;
+    }
+    .btn{
+        margin: 0 0 10px 0;
+        width: 240px;
+        border-radius: 10px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 22px;
+        color:#fff;
+    }
+    a{
+        background-color: #ca84dc;
+        border:#ca84dc;
+        color:#fff;
+    }
+
 </style>

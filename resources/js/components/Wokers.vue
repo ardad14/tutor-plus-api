@@ -1,48 +1,43 @@
 <template>
-    <div class="d-flex flex-column col-10 container justify-content-center align-content-center ">
+    <div class="d-flex flex-column col-10 container justify-content-center align-content-center mt-5">
         <input type="hidden" name="_token" :value="this.csrfToken">
         <div class="mt-3 p-4">
-            <h3 class="text-center text-decoration-underline">Клієнти</h3>
+            <h3 class="text-center text-decoration-underline">Працівники</h3>
             <table class="table mt-4">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Ім'я</th>
-                    <th scope="col">Прізвище</th>
-                    <th scope="col">Вік</th>
-                    <th scope="col">Витрачено коштів</th>
-                    <th scope="col">.</th>
+                    <th scope="col">Прiзвище</th>
+                    <th scope="col">Пошта</th>
+                    <th scope="col">Позиція</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="client in this.clientsData">
-                    <th scope="row">{{ client.id }}</th>
-                    <td>{{ client.name }}</td>
-                    <td>{{ client.surname }}</td>
-                    <td>{{ client.age }}</td>
-                    <td>{{ client.spend_money }} грн</td>
-                    <td><a class="btn btn-primary" :href=editClient(client.id) >Змінити</a></td>
+                <tr v-for="worker in this.workersData">
+                    <th scope="row">{{ worker.id }}</th>
+                    <td>{{ worker.name }}</td>
+                    <td>{{ worker.surname }}</td>
+                    <td>{{ worker.email }}</td>
+                    <td>{{ worker.role }}</td>
+<!--                    <td><a class="btn btn-primary" :href=editClient(client.id) >Змінити</a></td>-->
                 </tr>
                 </tbody>
             </table>
         </div>
+        <a class="btn btn-primary" href="/addWorker">Додати нового працівника</a>
     </div>
 </template>
 
 <script>
 export default {
-    name: "Clients",
+    name: "Wokers",
     props: {
-        clients: []
+        workers: []
     },
     data() {
         return {
-            clientsData: JSON.parse(this.clients),
-        }
-    },
-    methods: {
-        editClient: function (id) {
-            return `/editClient/${id}`;
+            workersData: JSON.parse(this.workers),
         }
     },
     computed: {
@@ -73,12 +68,6 @@ export default {
         color: white;
         padding: 10px 5px;
     }
-    th:last-child{
-        color:#A0A0A0;
-    }
-    td:last-child{
-
-    }
     th, td {
         border-style: solid;
         border-width: 0 1px 1px 0;
@@ -97,11 +86,11 @@ export default {
         text-align: center;
     }
     .btn{
-        width: 100px;
+        width: 380px;
         position: relative;
-        left: 25px;
+        left: 30px;
         border-radius: 20px;
         font-family: 'Montserrat', sans-serif;
-        font-size: 18px;
+        font-size: 24px;
     }
 </style>
