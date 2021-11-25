@@ -1,26 +1,98 @@
-/**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
 require('./bootstrap');
 
 window.Vue = require('vue').default;
 
 
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-
 import 'material-icons/iconfont/material-icons.css';
+import VueI18n from 'vue-i18n'
+
+Vue.use(VueI18n);
+
+const messages = {
+    en: {
+        navbar: {
+            analytics: 'Analytics',
+            clients: 'Clients',
+            workers: 'Workers',
+            exit: 'Exit'
+        },
+        analytics: {
+            dataTitle: 'Raw data',
+            table: {
+                clients: 'Client',
+                money: 'Money',
+                date: 'Date'
+            },
+
+            sidebar: {
+                general: 'General',
+                month: 'Month',
+                clients: 'Clients',
+                goods: 'Goods'
+            },
+            general: {
+                title: 'General'
+            },
+            month: {
+                title: 'Month'
+            },
+            clients: {
+                title: 'Clients'
+            },
+            goods: {
+                title: 'Goods',
+                good: 'Good'
+            }
+        }
+
+    },
+    ua: {
+        navbar: {
+            analytics: 'Аналітика',
+            clients: 'Клієнти',
+            workers: 'Працівники',
+            exit: 'Вийти'
+        },
+        analytics: {
+            dataTitle: 'Необроблені дані',
+            table: {
+                clients: 'Клієнт',
+                money: 'Гроші',
+                date: 'Дата'
+            },
+
+            sidebar: {
+                general: 'Загальна',
+                month: 'Місячна',
+                clients: 'Клієнти',
+                goods: 'Товари'
+            },
+            general: {
+                title: 'Загальна'
+            },
+            month: {
+                title: 'Місячна'
+            },
+            clients: {
+                title: 'Клієнти'
+            },
+            goods: {
+                title: 'Товари',
+                good: 'Товар'
+            }
+
+        }
+    }
+}
+
+// Create VueI18n instance with options
+const i18n = new VueI18n({
+    locale: 'ua', // set locale
+    messages, // set locale messages
+})
 
 //defined as global component
 Vue.component('V-MaterialIcon', require('vue-materials-icon/MaterialIcon').default);
-
 
 Vue.component('navbar', require('./components/Navbar.vue').default);
 Vue.component('main-page', require('./components/Main.vue').default);
@@ -48,11 +120,15 @@ Vue.component('analytics-goods', require('./components/analytics/AnalyticsGoods.
  */
 
 const app = new Vue({
+    i18n,
     el: '#app',
 });
 
 const navbar = new Vue({
+    i18n,
     el: '#navbar',
 })
 
-
+if(localStorage.getItem('locale') !== null) {
+    i18n.locale = localStorage.getItem('locale');
+}

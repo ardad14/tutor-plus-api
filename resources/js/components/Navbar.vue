@@ -3,12 +3,18 @@
         <nav class="py-2 border-bottom">
             <div class="container">
                 <ul class="nav col-12 mb-2 text-center justify-content-center mb-md-0">
-                    <li class="nav-item"><a href="/analytics/general" class="nav-link link-dark px-2 active" aria-current="page">Аналітика</a></li>
-                    <li class="nav-item"><a href="/clients" class="nav-link link-dark px-2">Клієнти</a></li>
-                    <li class="nav-item"><a href="/workers" class="nav-link link-dark px-2">Працівники</a></li>
+                    <li class="nav-item"><a href="/analytics/general" class="nav-link link-dark px-2 active" aria-current="page">{{ $t("navbar.analytics") }}</a></li>
+                    <li class="nav-item"><a href="/clients" class="nav-link link-dark px-2">{{ $t("navbar.clients") }}</a></li>
+                    <li class="nav-item"><a href="/workers" class="nav-link link-dark px-2">{{ $t("navbar.workers") }}</a></li>
 <!--                    <li><a type="button" href="/signIn" class="nav-link active">Регістрація</a></li>
                     <li><a type="button" href="/signUp" class="btn btn-primary me-2">Увійти</a></li>-->
-                    <li class="nav-item"><a href="/logOut" class="btn btn-primary me-2">Вийти</a></li>
+                    <li class="nav-item"><a href="/logOut" class="btn btn-primary me-2">{{ $t("navbar.exit") }}</a></li>
+                    <li>
+                        <div class="locale-changer">
+                            <a href="#" @click="setLocale('ua')">ua</a>
+                            <a href="#" @click="setLocale('en')">en</a>
+                        </div>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -17,7 +23,18 @@
 
 <script>
 export default {
-    name: "Navbar"
+    name: "Navbar",
+    methods: {
+        setLocale: function (locale) {
+            localStorage.setItem('locale', locale);
+            window.location.reload();
+        }
+    }
+    /*watch: {
+        lang() {
+            $root.changeLocale($i18n.locale);
+        }
+    }*/
 }
 </script>
 

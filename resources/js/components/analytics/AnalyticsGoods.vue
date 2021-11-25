@@ -4,7 +4,7 @@
             <analytics-sidebar currentTab="goods" />
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
                 <div class="d-flex flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="col-5 h2">Товари</h1>
+                    <h1 class="col-5 h2">{{ $t("analytics.goods.title") }}</h1>
                     <!--                    <div class="btn-toolbar mb-2 mb-md-0">
                                             <div class="btn-group me-2">
                                                 <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
@@ -19,23 +19,21 @@
 
                 <canvas class="my-4 w-100 chartjs-render-monitor" ref="canvas" id="myChart"  width="1479" height="624" style="display: block; width: 1479px; height: 624px;"></canvas>
 
-                <h2>Необроблені дані</h2>
+                <h2>{{ $t("analytics.dataTitle") }}</h2>
                 <div class="table-responsive">
                     <table class="table table-striped table-sm">
                         <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Клієнт</th>
-                            <th scope="col">Грощі</th>
-                            <th scope="col">Дата</th>
+                            <th scope="col">{{ $t("analytics.goods.good") }}</th>
+                            <th scope="col">{{ $t("analytics.table.money") }}</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr v-for="(action, index) in this.actionsData">
                             <td>{{ index }}</td>
-                            <td>{{ action.client_id }}</td>
-                            <td>{{ action.spend_money }}</td>
-                            <td>{{ convertData(action.created_at) }}</td>
+                            <td>{{ action.name }}</td>
+                            <td>{{ action.price }}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -63,6 +61,9 @@ export default {
     methods: {
         convertData: function (date) {
             return moment(date).format("MMMM Do YYYY, h:mm:a")
+        },
+        calculateIncome: function (price, amount) {
+            return price * amount;
         },
         randRGBNumber: function () {
             return Math.floor(Math.random() * 255);
