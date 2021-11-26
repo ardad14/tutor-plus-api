@@ -2,15 +2,15 @@
     <div class="d-flex flex-column col-10 container justify-content-center align-content-center mt-5">
         <input type="hidden" name="_token" :value="this.csrfToken">
         <div class="mt-3 p-4">
-            <h3 class="text-center text-decoration-underline">Працівники</h3>
+            <h3 class="text-center text-decoration-underline">{{ $t("workers.title") }}</h3>
             <table class="table mt-4">
                 <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">Ім'я</th>
-                    <th scope="col">Прiзвище</th>
-                    <th scope="col">Пошта</th>
-                    <th scope="col">Позиція</th>
+                    <th scope="col">{{ $t("workers.table.name") }}</th>
+                    <th scope="col">{{ $t("workers.table.surname") }}</th>
+                    <th scope="col">{{ $t("workers.table.email") }}</th>
+                    <th scope="col">{{ $t("workers.table.position") }}</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -25,7 +25,7 @@
                 </tbody>
             </table>
         </div>
-        <a class="btn btn-primary" href="/addWorker">Додати нового працівника</a>
+        <a class="btn btn-primary" href="/addWorker">{{ $t("workers.addNewWorker") }}</a>
     </div>
 </template>
 

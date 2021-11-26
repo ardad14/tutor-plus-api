@@ -21,10 +21,10 @@ class DatabaseSeeder extends Seeder
     {
         /*Place::factory()
             ->count(10)
-            ->create();
+            ->create();*/
 
 
-        User::factory()
+        /*User::factory()
             ->count(10)
             ->create();
 
@@ -34,14 +34,14 @@ class DatabaseSeeder extends Seeder
 
         ClientPlaces::factory()
             ->count(500)
-            ->create();*/
+            ->create();
 
         UserPlaces::factory()
             ->count(12)
-            ->create();
-
-        /*Product::factory()
-            ->count(80)
             ->create();*/
+
+        Product::factory()
+            ->count(80)
+            ->create();
     }
 }

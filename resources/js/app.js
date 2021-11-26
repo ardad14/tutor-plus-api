@@ -43,8 +43,27 @@ const messages = {
                 title: 'Goods',
                 good: 'Good'
             }
+        },
+        clients: {
+            title: 'Clients',
+            table: {
+                name: `Name`,
+                surname: 'Surname',
+                age: 'Age',
+                spendMoney: 'Spend money',
+                change: 'Change'
+            }
+        },
+        workers: {
+            title: 'Workers',
+            table: {
+                name: `Name`,
+                surname: 'Surname',
+                email: 'Email',
+                position: 'Role'
+            },
+            addNewWorker: 'Add new worker'
         }
-
     },
     ua: {
         navbar: {
@@ -81,6 +100,26 @@ const messages = {
                 good: 'Товар'
             }
 
+        },
+        clients: {
+            title: 'Клієнти',
+            table: {
+                name: `Ім'я`,
+                surname: 'Прізвище',
+                age: 'Вік',
+                spendMoney: 'Витрачені кошти',
+                change: 'Змінити'
+            }
+        },
+        workers: {
+            title: 'Працівники',
+            table: {
+                name: `Ім'я`,
+                surname: 'Прізвище',
+                email: 'Пошта',
+                position: 'Позиція'
+            },
+            addNewWorker: 'Додати нового працівника'
         }
     }
 }
