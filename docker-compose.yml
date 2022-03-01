@@ -1,68 +1,71 @@
 version: '3'
 services:
 
-  #PHP Service
-  observested-app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: php:8.0.10-fpm
-    container_name: observested-app
-    restart: unless-stopped
-    tty: true
-    environment:
-      PHP_IDE_CONFIG: "serverName=observested"
-      XDEBUG_SESSION: docker-server
-      SERVICE_NAME: observested-app
-      SERVICE_TAGS: dev
-    working_dir: /var/www
-    volumes:
-      - ./:/var/www
-      - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
-    networks:
-      - app-network
+    #PHP Service
+    tutor-plus-app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: php:8.1-fpm
+        container_name: tutor-plus-app
+        restart: unless-stopped
+        tty: true
+        environment:
+            PHP_IDE_CONFIG: "serverName=tutor-plus"
+            XDEBUG_SESSION: docker-server
+            SERVICE_NAME: tutor-plus-app
+            SERVICE_TAGS: dev
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+            - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+        networks:
+            - app-network
 
-  #Nginx Service
-  observested-webserver:
-    image: nginx:alpine
-    container_name: observested-webserver
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - ./:/var/www
-      - ./nginx/conf.d/:/etc/nginx/conf.d/
-      - ./nginx/ssl:/etc/nginx/ssl
-    networks:
-      - app-network
+    #Nginx Service
+    tutor-plus-webserver:
+        image: nginx:alpine
+        container_name: tutor-plus-webserver
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes:
+            - ./:/var/www
+            - ./nginx/conf.d/:/etc/nginx/conf.d/
+            - ./nginx/ssl:/etc/nginx/ssl
+        networks:
+            - app-network
 
-  #MySQL Service
-  observested-db:
-    image: mysql:5.7.22
-    container_name: observested-db
-    restart: unless-stopped
-    tty: true
-    ports:
-      - "3310:3310"
-    environment:
-      MYSQL_DATABASE: Observested
-      MYSQL_ROOT_PASSWORD: root
-      SERVICE_TAGS: dev
-      SERVICE_NAME: localhost
-    volumes:
-        - dbdata:/var/lib/mysql
-        - ./mysql/my.cnf:/etc/mysql/my.cnf
-    networks:
-      - app-network
+    #MySQL Service
+    tutor-plus-db:
+        image: mysql:8.0.28
+        container_name: tutor-plus-db
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: TutorPlus
+            MYSQL_ROOT_USER: root
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_USER: artem
+            MYSQL_PASSWORD: root
+            SERVICE_TAGS: dev
+            SERVICE_NAME: localhost
+        volumes:
+            - dbdata:/var/lib/mysql-files
+            - ./mysql/my.cnf:/etc/mysql/my.cnf
+        networks:
+            - app-network
 
 #Docker Networks
 networks:
-  app-network:
-    driver: bridge
+    app-network:
+        driver: bridge
 
 #Volumes
 volumes:
-  dbdata:
-    driver: local
+    dbdata:
+        driver: local
