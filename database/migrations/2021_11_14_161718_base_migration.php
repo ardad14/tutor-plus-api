@@ -22,38 +22,39 @@ class BaseMigration extends Migration
             $table->string('surname');
             $table->string('email');
             $table->string('password')->nullable();
-            $table->string('role')->default('admin');
-            $table->dateTime('created_at')->useCurrent();
-            $table->dateTime('updated_at')->nullable()->useCurrentOnUpdate();
+            $table->enum('role', ['student', 'tutor', 'admin']);
+            $table->timestamps();
         });
 
         /**
          * Table users
          */
-        Schema::create('places', function (Blueprint $table) {
+        Schema::create('skills', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string('name');
-            $table->string('address');
-            $table->time('working_hours_start');
-            $table->time('working_hours_end');
-            $table->dateTime('created_at')->useCurrent();
-            $table->dateTime('updated_at')->nullable()->useCurrentOnUpdate();
+            $table->string('level');
+            $table->text('description');
+            $table->timestamps();
         });
 
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('announcements', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->string('name');
-            $table->string('surname');
-            $table->string('age')->nullable();
-            $table->dateTime('created_at')->useCurrent();
-            $table->dateTime('updated_at')->nullable()->useCurrentOnUpdate();
+            $table->string('title');
+            $table->string('description');
+            $table->decimal('price');
+            $table->timestamp('duration');
+            $table->json('schedule')->nullable();
+            $table->timestamps();
         });
 
-        Schema::create('clients_places', function (Blueprint $table) {
+        Schema::create('users_skills', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->float('spend_money');
-            $table->dateTime('created_at')->useCurrent();
-            $table->dateTime('updated_at')->nullable()->useCurrentOnUpdate();
+            $table->timestamps();
+        });
+
+        Schema::create('users_announcements', function (Blueprint $table) {
+            $table->id()->autoIncrement();
+            $table->timestamps();
         });
 
 
@@ -66,12 +67,21 @@ class BaseMigration extends Migration
         /**
          * Foreign keys clients_places
          */
-        Schema::table('clients_places', function (Blueprint $table) {
+        Schema::table('users_skills', function (Blueprint $table) {
             $table->after('id', function ($table) {
-                $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
+                $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             });
-            $table->after('client_id', function ($table) {
-                $table->foreignId('place_id')->constrained('places')->onDelete('cascade');
+            $table->after('user_id', function ($table) {
+                $table->foreignId('skill_id')->constrained('skills')->onDelete('cascade');
+            });
+        });
+
+        Schema::table('users_announcements', function (Blueprint $table) {
+            $table->after('id', function ($table) {
+                $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            });
+            $table->after('user_id', function ($table) {
+                $table->foreignId('announcement_id')->constrained('announcements')->onDelete('cascade');
             });
         });
     }
@@ -83,18 +93,10 @@ class BaseMigration extends Migration
      */
     public function down()
     {
-        Schema::table('users', function(Blueprint $table) {
-            $table->dropForeign(['place_id']);
-        });
-
-        Schema::table('clients_places', function(Blueprint $table) {
-            $table->dropForeign(['client_id', 'place_id']);
-        });
-
-        Schema::drop('users');
-        Schema::drop('places');
-        Schema::drop('clients');
-        Schema::drop('clients_places');
-
+        Schema::dropIfExists('users_skills');
+        Schema::dropIfExists('users_announcements');
+        Schema::dropIfExists('users');
+        Schema::dropIfExists('skills');
+        Schema::dropIfExists('announcements');
     }
 }
