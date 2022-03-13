@@ -24,9 +24,9 @@ class AnnouncementRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required', 'string', 'min:1', 'max:32', 'regex:/[<>"&%=]/u'],
-            'description' => ['required', 'string', 'min:1', 'max:64', 'regex:/[<>"&%=]/u'],
-            'price' => ['required', 'string', 'max:30'],
+            'title' => ['required', 'string', 'min:1', 'max:32'],
+            'description' => ['required', 'string', 'min:1', 'max:64'],
+            'price' => ['required', 'numeric'],
             'duration' => ['required'],
             'schedule' => ['required']
         ];

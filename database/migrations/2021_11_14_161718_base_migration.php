@@ -42,7 +42,7 @@ class BaseMigration extends Migration
             $table->string('title');
             $table->string('description');
             $table->decimal('price');
-            $table->timestamp('duration');
+            $table->string('duration');
             $table->json('schedule')->nullable();
             $table->timestamps();
         });

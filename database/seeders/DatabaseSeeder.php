@@ -2,12 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Client;
-use App\Models\ClientPlaces;
-use App\Models\Place;
-use App\Models\Product;
+use App\Models\Announcement;
+use App\Models\Skill;
 use App\Models\User;
-use App\Models\UserPlaces;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -19,29 +16,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        /*Place::factory()
-            ->count(10)
-            ->create();*/
-
-
-        /*User::factory()
-            ->count(10)
-            ->create();
-
-        Client::factory()
-            ->count(150)
-            ->create();
-
-        ClientPlaces::factory()
-            ->count(500)
-            ->create();
-
-        UserPlaces::factory()
-            ->count(12)
-            ->create();*/
-
-        Product::factory()
-            ->count(80)
-            ->create();
+        User::factory()->count(30)->create();
+        Announcement::factory()->count(30)->create();
+        Skill::factory()->count(30)->create();
     }
 }
