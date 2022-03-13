@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\AnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,14 +20,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/users', 'UserController@index');
-Route::get('/users/{id}', 'UserController@show');
-Route::post('/users', 'UserController@create');
-Route::put('/users', 'UserController@update');
-Route::delete('/users/{id}', 'UserController@delete');
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
+Route::post('/users', [UserController::class, 'create']);
+Route::put('/users', [UserController::class, 'update']);
+Route::delete('/users/{id}', [UserController::class, 'delete']);
 
-Route::get('/announcements', 'AnnouncementController@index');
-Route::get('/announcements/{id}', 'AnnouncementController@show');
-Route::post('/announcements', 'AnnouncementController@create');
-Route::put('/announcements', 'AnnouncementController@update');
-Route::delete('/announcements/{id}', 'AnnouncementController@delete');
+Route::get('/announcements', [AnnouncementController::class, 'index']);
+Route::get('/announcements/{id}', [AnnouncementController::class, 'show']);
+Route::post('/announcements', [AnnouncementController::class, 'create']);
+Route::put('/announcements', [AnnouncementController::class, 'update']);
+Route::delete('/announcements/{id}', [AnnouncementController::class, 'delete']);
