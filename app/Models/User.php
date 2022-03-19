@@ -6,17 +6,24 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Laravel\Passport\HasApiTokens;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Auth\Authenticatable as AuthenticableTrait;
 
-class User extends Model
+class User extends Model implements Authenticatable
 {
-    use HasApiTokens, HasFactory;
+    use AuthenticableTrait, HasApiTokens, HasFactory;
 
     protected $fillable = [
         'name',
         'surname',
         'email',
+        'phone',
         'password',
         'role'
+    ];
+
+    protected $hidden = [
+        'password'
     ];
 
     /**

@@ -19,23 +19,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/users', [UserController::class, 'index'])->middleware('auth:api');;
-Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth:api');;
-Route::post('/users', [UserController::class, 'create'])->middleware('auth:api');;
-Route::put('/users', [UserController::class, 'update'])->middleware('auth:api');;
-Route::delete('/users/{id}', [UserController::class, 'delete'])->middleware('auth:api');;
+Route::get('/users', [UserController::class, 'index'])->middleware('auth:api');
+Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth:api');
+Route::post('/users', [UserController::class, 'create'])->middleware('auth:api');
+Route::put('/users', [UserController::class, 'update'])->middleware('auth:api');
+Route::delete('/users/{id}', [UserController::class, 'delete'])->middleware('auth:api');
 
-Route::get('/announcements', [AnnouncementController::class, 'index'])->middleware('auth:api');;
-Route::get('/announcements/{id}', [AnnouncementController::class, 'show'])->middleware('auth:api');;
-Route::post('/announcements', [AnnouncementController::class, 'create'])->middleware('auth:api');;
-Route::put('/announcements', [AnnouncementController::class, 'update'])->middleware('auth:api');;
-Route::delete('/announcements/{id}', [AnnouncementController::class, 'delete'])->middleware('auth:api');;
-
-
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/announcements', [AnnouncementController::class, 'index'])->middleware('auth:api');
+Route::get('/announcements/{id}', [AnnouncementController::class, 'show'])->middleware('auth:api');
+Route::post('/announcements', [AnnouncementController::class, 'create'])->middleware('auth:api');
+Route::put('/announcements', [AnnouncementController::class, 'update'])->middleware('auth:api');
+Route::delete('/announcements/{id}', [AnnouncementController::class, 'delete'])->middleware('auth:api');
 
 Route::post('/register', RegisterController::class);
-Route::post('/login', [LoginController::class]);
-Route::post('/logout', [LogoutController::class])->middleware('auth:api');
+Route::post('/login', LoginController::class)->name('login');
+Route::post('/logout', LogoutController::class)->middleware('auth:api');

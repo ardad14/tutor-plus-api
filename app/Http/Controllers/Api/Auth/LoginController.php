@@ -14,7 +14,7 @@ class LoginController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function __invoke(Request $request)
@@ -37,9 +37,8 @@ class LoginController extends Controller
         $token->token->save();
 
         return response()->json([
-            'token_type' => 'Bearer',
+            'user' => Auth::user(),
             'token' => $token->accessToken,
-            'expires_at' => Carbon::parse($token->token->expires_at)->toDateTimeString()
         ], 200);
     }
 }

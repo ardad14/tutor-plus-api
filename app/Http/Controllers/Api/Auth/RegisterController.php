@@ -11,18 +11,11 @@ class RegisterController extends Controller
     /**
      * Handle the incoming request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function __invoke(Request $request)
     {
-        return response()->json([
-            array_merge(
-                $request->except('password'),
-                ['password' => bcrypt($request->password)],
-            )
-        ], 200);
-
         $user = User::create(array_merge(
             $request->except('password'),
             ['password' => bcrypt($request->password)],

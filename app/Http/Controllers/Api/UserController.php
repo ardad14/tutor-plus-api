@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\Api\UserRequest;
 use App\Models\User;
 use App\Repositories\UserRepository;
 use Illuminate\Http\JsonResponse;
@@ -22,21 +22,21 @@ class UserController extends Controller
     public function index(): JsonResponse
     {
         $users = User::all();
-        return new JsonResponse($users, Response::HTTP_OK);
+        return response()->json($users, Response::HTTP_OK);
 
     }
 
     public function show(string $id): JsonResponse
     {
         $user = User::findOrFail($id);
-        return new JsonResponse($user, Response::HTTP_OK);
+        return response()->json($user, Response::HTTP_OK);
     }
 
     public function create(UserRequest $request): JsonResponse
     {
         $user = $request->all();
         $this->repository->create($user);
-        return new JsonResponse($user, Response::HTTP_OK);
+        return response()->json($user, Response::HTTP_OK);
     }
 
     public function update(UserRequest $request, string $id): JsonResponse
@@ -44,12 +44,12 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $data = $request->all();
         $user->fill($data)->save();
-        return new JsonResponse($user, Response::HTTP_OK);
+        return response()->json($user, Response::HTTP_OK);
     }
 
-    public function delete(string $id):JsonResponse
+    public function delete(string $id): JsonResponse
     {
         User::destroy($id);
-        return new JsonResponse(['deleted' => true], Response::HTTP_OK);
+        return response()->json(['deleted' => true], Response::HTTP_OK);
     }
 }
