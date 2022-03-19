@@ -1,9 +1,12 @@
 <?php
 
+use App\Http\Controllers\Api\AnnouncementController;
+use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\Auth\LogoutController;
+use App\Http\Controllers\Api\Auth\RegisterController;
+use App\Http\Controllers\Api\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\AnnouncementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,18 +19,27 @@ use App\Http\Controllers\AnnouncementController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::get('/users', [UserController::class, 'index'])->middleware('auth:api');;
+Route::get('/users/{id}', [UserController::class, 'show'])->middleware('auth:api');;
+Route::post('/users', [UserController::class, 'create'])->middleware('auth:api');;
+Route::put('/users', [UserController::class, 'update'])->middleware('auth:api');;
+Route::delete('/users/{id}', [UserController::class, 'delete'])->middleware('auth:api');;
+
+Route::get('/announcements', [AnnouncementController::class, 'index'])->middleware('auth:api');;
+Route::get('/announcements/{id}', [AnnouncementController::class, 'show'])->middleware('auth:api');;
+Route::post('/announcements', [AnnouncementController::class, 'create'])->middleware('auth:api');;
+Route::put('/announcements', [AnnouncementController::class, 'update'])->middleware('auth:api');;
+Route::delete('/announcements/{id}', [AnnouncementController::class, 'delete'])->middleware('auth:api');;
+
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/users', [UserController::class, 'index']);
-Route::get('/users/{id}', [UserController::class, 'show']);
-Route::post('/users', [UserController::class, 'create']);
-Route::put('/users', [UserController::class, 'update']);
-Route::delete('/users/{id}', [UserController::class, 'delete']);
-
-Route::get('/announcements', [AnnouncementController::class, 'index']);
-Route::get('/announcements/{id}', [AnnouncementController::class, 'show']);
-Route::post('/announcements', [AnnouncementController::class, 'create']);
-Route::put('/announcements', [AnnouncementController::class, 'update']);
-Route::delete('/announcements/{id}', [AnnouncementController::class, 'delete']);
+Route::group(['namespace' => 'Api'], function () {
+    Route::group(['namespace' => 'Auth'], function () {
+        Route::post('/register', [RegisterController::class]);
+        Route::post('/login', [LoginController::class]);
+        Route::post('/logout', [LogoutController::class])->middleware('auth:api');
+    });
+});
