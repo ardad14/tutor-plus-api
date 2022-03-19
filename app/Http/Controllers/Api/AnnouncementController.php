@@ -38,7 +38,7 @@ class AnnouncementController extends Controller
         return new JsonResponse($announcement, Response::HTTP_OK);
     }
 
-    public function delete(string $id):JsonResponse
+    public function delete(string $id): JsonResponse
     {
         Announcement::destroy($id);
         return new JsonResponse(['deleted' => true], Response::HTTP_OK);

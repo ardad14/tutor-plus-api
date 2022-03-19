@@ -47,7 +47,7 @@ class UserController extends Controller
         return new JsonResponse($user, Response::HTTP_OK);
     }
 
-    public function delete(string $id):JsonResponse
+    public function delete(string $id): JsonResponse
     {
         User::destroy($id);
         return new JsonResponse(['deleted' => true], Response::HTTP_OK);

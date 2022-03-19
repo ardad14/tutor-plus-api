@@ -15,6 +15,7 @@ class User extends Model
         'name',
         'surname',
         'email',
+        'phone',
         'password',
         'role'
     ];
