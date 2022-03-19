@@ -29,7 +29,7 @@ class RegisterFormRequest extends FormRequest
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'phone' => ['required', 'string', 'max:15'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
-            'role' => ['required', 'string', 'in:user, tutor'],
+            'role' => ['required', 'string', 'in:student, tutor'],
         ];
     }
 }

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
-use App\Http\Requests\Api\Auth\RegisterFormRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -15,8 +14,15 @@ class RegisterController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(RegisterFormRequest $request)
+    public function __invoke(Request $request)
     {
+        return response()->json([
+            array_merge(
+                $request->except('password'),
+                ['password' => bcrypt($request->password)],
+            )
+        ], 200);
+
         $user = User::create(array_merge(
             $request->except('password'),
             ['password' => bcrypt($request->password)],
