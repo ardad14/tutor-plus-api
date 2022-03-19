@@ -21,6 +21,7 @@ class BaseMigration extends Migration
             $table->string('name');
             $table->string('surname');
             $table->string('email');
+            $table->string('phone');
             $table->string('password')->nullable();
             $table->enum('role', ['student', 'tutor', 'admin']);
             $table->timestamps();
